@@ -3,19 +3,16 @@
 <html>
 <head>
     <title>Title</title>
-    <%--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">--%>
 </head>
 <body>
-<br>
-<%--<h1>Edit user: ${requestScope.user.login}</h1>--%>
-<%--    ${requestScope.user}--%>
+<h1>Создание пользователя</h1>
 <div class="container">
     <form class="form-horizontal" method="post">
         <fieldset>
 
             <!-- Form Name -->
             <%--        <legend>Form Name</legend>--%>
-            <legend>Edit user: ${requestScope.user.login}</legend>
+            <legend>Create user: ${requestScope.user.login}</legend>
 
             <!-- Text input-->
             <div class="form-group">
@@ -45,44 +42,21 @@
                         <c:forEach var="role" items="${applicationScope.roles}">
                             <option value="${role}" ${role==requestScope.user.role?"selected":""}>${role}</option>
                         </c:forEach>
-                        <%--                        <option value="admin">ADMIN</option>--%>
-                        <%--                        <option value="user">USER</option>--%>
-                        <%--                        <option value="guest">GUEST</option>--%>
+
                     </select>
                 </div>
             </div>
 
-            <!-- Buttons (Double) -->
+            <!-- Buttons  -->
             <div class="form-group">
                 <label class="col-md-4 control-label" for="create">Good Button</label>
                 <div class="col-md-8">
-<%--                    <c:if test="${requestScope.user==null}">--%>
-<%--                        <button id="create" name="create" class="btn btn-info">Create</button>--%>
-<%--                    </c:if>--%>
-<%--                    <c:if test="${requestScope.user==null}">--%>
-                        <button id="update" name="update" class="btn btn-info">Update</button>
-<%--                    </c:if>--%>
-<%--                    <c:if test="${requestScope.user==null}">--%>
-                        <button id="delete" name="delete" class="btn btn-info">Delete</button>
-<%--                    </c:if>--%>
+                    <button id="create" name="create" class="btn btn-info">Create</button>
                 </div>
-            </div>
-            <div class="col-md-8">
-                <a href="${pageContext.request.contextPath}/user-list"
-                   class="btn btn-info" id="return" role="button">Return to list users</a>
             </div>
 
         </fieldset>
     </form>
 </div>
-
-
-
-<%--<div class="col-md-8">--%>
-<%--    <a href="${pageContext.request.contextPath}/create-user"--%>
-<%--       class="btn btn-info" id="return" role="button">Return to list users</a>--%>
-<%--</div>--%>
-
-<%--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js" integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y" crossorigin="anonymous"></script>--%>
 </body>
 </html>
