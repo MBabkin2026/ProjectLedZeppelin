@@ -1,4 +1,4 @@
-package com.javarush.babkin;
+package com.javarush.babkin.servlets;
 
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
