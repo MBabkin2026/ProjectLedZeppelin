@@ -1,6 +1,6 @@
 package com.javarush.babkin.servlets;
 
-import com.javarush.babkin.StatsService;
+import com.javarush.babkin.service.StatsService;
 import com.javarush.babkin.UserDto;
 import com.javarush.babkin.UserStatsAdapter;
 import com.javarush.babkin.service.UserService;
