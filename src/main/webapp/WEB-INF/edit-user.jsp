@@ -1,88 +1,66 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@include file="head.jsp" %>
-<html>
-<head>
-    <title>Title</title>
-    <%--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">--%>
-</head>
-<body>
-<br>
-<%--<h1>Edit user: ${requestScope.user.login}</h1>--%>
-<%--    ${requestScope.user}--%>
-<div class="container">
-    <form class="form-horizontal" method="post">
-        <fieldset>
+<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@include file="head.jsp"%>
 
-            <!-- Form Name -->
-            <%--        <legend>Form Name</legend>--%>
-            <legend>Edit user: ${requestScope.user.login}</legend>
+<form class="form-horizontal" method="post" action="${pageContext.request.contextPath}/edit-user">
 
-            <!-- Text input-->
-            <div class="form-group">
-                <label class="col-md-4 control-label" for="login">Login</label>
-                <div class="col-md-4">
-                    <input id="login" value="${requestScope.user.login}" name="login" type="text"
-                           placeholder="place for login" class="form-control input-md" required="">
-<%--                    <span class="help-block">help</span>--%>
-                </div>
+    <input type="hidden" name="id" value="${user.id}">
+
+    <fieldset>
+        <legend>Edit user: ${user.login}</legend>
+
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="login">Login</label>
+            <div class="col-md-4">
+                <input id="login" name="login" type="text" class="form-control input-md"
+                       value="${user.login}" required>
             </div>
+        </div>
 
-            <!-- Password input-->
-            <div class="form-group">
-                <label class="col-md-4 control-label" for="password">Password</label>
-                <div class="col-md-4">
-                    <input id="password" value="${requestScope.user.password}" name="password" type="text"
-                           placeholder="place for password" class="form-control input-md" required="">
-<%--                    <span class="help-block">help</span>--%>
-                </div>
-            </div>
 
-            <!-- Select Basic -->
-            <div class="form-group">
-                <label class="col-md-4 control-label" for="Role">Role</label>
-                <div class="col-md-4">
-                    <select id="role" name="role" class="form-control">
-                        <c:forEach var="role" items="${applicationScope.roles}">
-                            <option value="${role}" ${role==requestScope.user.role?"selected":""}>${role}</option>
-                        </c:forEach>
-                        <%--                        <option value="admin">ADMIN</option>--%>
-                        <%--                        <option value="user">USER</option>--%>
-                        <%--                        <option value="guest">GUEST</option>--%>
-                    </select>
-                </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="password">Password</label>
+            <div class="col-md-4">
+                <input id="password" name="password" type="text" class="form-control input-md"
+                       value="${user.password}" required>
             </div>
+        </div>
 
-            <!-- Buttons (Double) -->
-            <div class="form-group">
-                <label class="col-md-4 control-label" for="create">Good Button</label>
-                <div class="col-md-8">
-<%--                    <c:if test="${requestScope.user==null}">--%>
-<%--                        <button id="create" name="create" class="btn btn-info">Create</button>--%>
-<%--                    </c:if>--%>
-<%--                    <c:if test="${requestScope.user==null}">--%>
-                        <button id="update" name="update" class="btn btn-info">Update</button>
-<%--                    </c:if>--%>
-<%--                    <c:if test="${requestScope.user==null}">--%>
-                        <button id="delete" name="delete" class="btn btn-info">Delete</button>
-<%--                    </c:if>--%>
-                </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="role">Role</label>
+            <div class="col-md-4">
+                <select id="role" name="role" class="form-control">
+                    <c:forEach var="role" items="${applicationScope.roles}">
+                        <option value="${role}" ${role == user.role ? 'selected' : ''}>${role}</option>
+                    </c:forEach>
+                </select>
             </div>
+        </div>
+
+
+        <div class="form-group">
+            <label class="col-md-4 control-label"></label>
             <div class="col-md-8">
-                <a href="${pageContext.request.contextPath}/user-list"
-                   class="btn btn-info" id="return" role="button">Return to list users</a>
+
+                <button type="submit" name="update" value="true" class="btn btn-primary">Update</button>
+
+                <button type="submit" name="delete" value="true"
+                        onclick="return confirm('Вы уверены, что хотите удалить пользователя?')"
+                        class="btn btn-danger">Delete</button>
             </div>
+        </div>
 
-        </fieldset>
-    </form>
-</div>
+    </fieldset>
+
+    <div class="col-md-8">
+        <a href="${pageContext.request.contextPath}/user-list"
+           class="btn btn-info" role="button">Return to list users</a>
+    </div>
+</form>
 
 
-
-<%--<div class="col-md-8">--%>
-<%--    <a href="${pageContext.request.contextPath}/create-user"--%>
-<%--       class="btn btn-info" id="return" role="button">Return to list users</a>--%>
-<%--</div>--%>
-
-<%--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js" integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y" crossorigin="anonymous"></script>--%>
-</body>
-</html>
+<c:if test="${not empty error}">
+    <div class="alert alert-danger">${error}</div>
+</c:if>

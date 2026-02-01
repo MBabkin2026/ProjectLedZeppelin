@@ -10,31 +10,26 @@
     <form class="form-horizontal" method="post">
         <fieldset>
 
-            <!-- Form Name -->
-            <%--        <legend>Form Name</legend>--%>
-            <legend>Create user: ${requestScope.user.login}</legend>
 
-            <!-- Text input-->
+            <legend>${requestScope.user != null ? 'Edit user: ' + requestScope.user.login : 'Create user'}</legend>
+
             <div class="form-group">
                 <label class="col-md-4 control-label" for="login">Login</label>
                 <div class="col-md-4">
                     <input id="login" value="${requestScope.user.login}" name="login" type="text"
                            placeholder="place for login" class="form-control input-md" required="">
-<%--                    <span class="help-block">help</span>--%>
                 </div>
             </div>
 
-            <!-- Password input-->
             <div class="form-group">
                 <label class="col-md-4 control-label" for="password">Password</label>
                 <div class="col-md-4">
-                    <input id="password" value="${requestScope.user.password}" name="password" type="text"
+                    <input id="password" value="${requestScope.user.password}" name="password" type="password"
                            placeholder="place for password" class="form-control input-md" required="">
-<%--                    <span class="help-block">help</span>--%>
                 </div>
             </div>
 
-            <!-- Select Basic -->
+
             <div class="form-group">
                 <label class="col-md-4 control-label" for="Role">Role</label>
                 <div class="col-md-4">
@@ -47,13 +42,19 @@
                 </div>
             </div>
 
-            <!-- Buttons  -->
+
             <div class="form-group">
-                <label class="col-md-4 control-label" for="create">Good Button</label>
+                <label class="col-md-4 control-label" for="create">Create user</label>
                 <div class="col-md-8">
                     <button id="create" name="create" class="btn btn-info">Create</button>
                 </div>
+
+                <label class="col-md-4 control-label" for="">Return</label>
+                <div class="col-md-8">
+                    <button id="create" name="return" class="btn btn-info">Return</button>
+                </div>
             </div>
+
 
         </fieldset>
     </form>
